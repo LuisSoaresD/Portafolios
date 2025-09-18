@@ -3,12 +3,13 @@ const $ = (s, ctx=document) => ctx.querySelector(s);
 const $$ = (s, ctx=document) => Array.from(ctx.querySelectorAll(s));
 
 // Año en footer
-$('#year').textContent = new Date().getFullYear();
+const yearEl = $('#year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // Toggle de menú en mobile
 const toggleBtn = $('.nav-toggle');
 const nav = $('#site-nav');
-if (toggleBtn) {
+if (toggleBtn && nav) {
   toggleBtn.addEventListener('click', () => {
     const open = nav.classList.toggle('open');
     toggleBtn.setAttribute('aria-expanded', String(open));
@@ -20,8 +21,10 @@ const header = document.querySelector('[data-elevate]');
 let lastY = 0;
 addEventListener('scroll', () => {
   const y = scrollY;
-  if (y > 8 && y > lastY) header.classList.add('elevated');
-  if (y < 4) header.classList.remove('elevated');
+  if (header) {
+    if (y > 8 && y > lastY) header.classList.add('elevated');
+    if (y < 4) header.classList.remove('elevated');
+  }
   lastY = y;
 }, {passive:true});
 
@@ -40,10 +43,9 @@ const io = ('IntersectionObserver' in window)
 io && $$('.reveal').forEach(el => io.observe(el));
 
 // Enlaces de contacto — PERSONALIZA AQUÍ
-// TODO: reemplaza con tus datos reales
 const CONTACT = {
-  instagramUser: 'tu_usuario', // ej: 'oleo_fragancias' o tu cuenta personal
-  whatsappNumberE164: '+5491100000000', // formato E.164: +54 9 11 XXXXXXXX
+  instagramUser: 'tu_usuario',          // ej: 'oleo_fragancias'
+  whatsappNumberE164: '+5491100000000', // formato E.164
   email: 'tuemail@dominio.com'
 };
 
@@ -56,7 +58,7 @@ if (ig && CONTACT.instagramUser) {
   ig.href = `https://instagram.com/${encodeURIComponent(CONTACT.instagramUser)}`;
 }
 if (wa && CONTACT.whatsappNumberE164) {
-  // https://wa.me/ se recomienda en formato sin espacios ni + (solo dígitos)
+  // https://wa.me/ requiere solo dígitos
   const digits = CONTACT.whatsappNumberE164.replace(/\D/g, '');
   wa.href = `https://wa.me/${digits}?text=${encodeURIComponent('Hola Luis, vi tu portafolio y me gustaría contactarte.')}`;
 }
@@ -72,11 +74,10 @@ function applyTheme(theme){ // 'light' | 'dark' | 'auto'
   document.documentElement.dataset.theme = theme;
 }
 
-function initTheme(){
+(function initTheme(){
   const saved = localStorage.getItem(lsKey);
   if (saved) applyTheme(saved);
-}
-initTheme();
+})();
 
 themeToggle?.addEventListener('click', () => {
   const current = document.documentElement.dataset.theme || 'auto';
