@@ -44,8 +44,8 @@ io && $$('.reveal').forEach(el => io.observe(el));
 
 // Enlaces de contacto — PERSONALIZA AQUÍ
 const CONTACT = {
-  instagramUser: 'tu_usuario',          // ej: 'oleo_fragancias'
-  whatsappNumberE164: '+5491100000000', // formato E.164
+  instagramUser: 'tu_usuario',
+  whatsappNumberE164: '+5491100000000', // E.164
   email: 'tuemail@dominio.com'
 };
 
@@ -58,7 +58,6 @@ if (ig && CONTACT.instagramUser) {
   ig.href = `https://instagram.com/${encodeURIComponent(CONTACT.instagramUser)}`;
 }
 if (wa && CONTACT.whatsappNumberE164) {
-  // https://wa.me/ requiere solo dígitos
   const digits = CONTACT.whatsappNumberE164.replace(/\D/g, '');
   wa.href = `https://wa.me/${digits}?text=${encodeURIComponent('Hola Luis, vi tu portafolio y me gustaría contactarte.')}`;
 }
@@ -66,7 +65,7 @@ if (mail && CONTACT.email) {
   mail.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent('Consulta desde tu portafolio')}`;
 }
 
-// Modo oscuro/claro con preferencia persistente
+// Tema (persistente). Por defecto oscura.
 const themeToggle = $('#theme-toggle');
 const lsKey = 'pref-theme';
 
@@ -76,11 +75,11 @@ function applyTheme(theme){ // 'light' | 'dark' | 'auto'
 
 (function initTheme(){
   const saved = localStorage.getItem(lsKey);
-  if (saved) applyTheme(saved);
+  applyTheme(saved || 'dark');
 })();
 
 themeToggle?.addEventListener('click', () => {
-  const current = document.documentElement.dataset.theme || 'auto';
+  const current = document.documentElement.dataset.theme || 'dark';
   const next = current === 'dark' ? 'light' : current === 'light' ? 'auto' : 'dark';
   applyTheme(next);
   localStorage.setItem(lsKey, next);

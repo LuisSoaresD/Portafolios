@@ -10,18 +10,16 @@
   --radius: 16px;
 }
 
-/* Light mode base (se ajusta con prefers-color-scheme) */
-@media (prefers-color-scheme: light) {
-  :root{
-    --bg: #f7f7fb;
-    --panel: #ffffff;
-    --text: #18181b;
-    --muted: #4b5563;
-    --brand: #5b3df1;
-    --brand-2: #00b386;
-    --border: #eaeaf1;
-    --shadow: 0 8px 24px rgba(0,0,0,.08);
-  }
+/* Tema CLARO solo si data-theme="light" */
+[data-theme="light"]{
+  --bg: #f7f7fb;
+  --panel: #ffffff;
+  --text: #18181b;
+  --muted: #4b5563;
+  --brand: #5b3df1;
+  --brand-2: #00b386;
+  --border: #eaeaf1;
+  --shadow: 0 8px 24px rgba(0,0,0,.08);
 }
 
 *{box-sizing:border-box}
@@ -81,13 +79,13 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--brand); outline-of
 .section-intro{color:var(--muted); margin-top:-.5rem}
 .grid-2{display:grid; grid-template-columns: 1fr 1fr; gap:2rem}
 
-/* === Sobre mí: imagen controlada para que no desborde === */
+/* Imagen controlada (no desborda) */
 .about-media{display:grid; place-items:start}
 .about-media img{
   width: 100%;
-  max-inline-size: clamp(220px, 38vw, 420px); /* <-- límite responsivo */
+  max-inline-size: clamp(220px, 38vw, 420px);
   height: auto;
-  aspect-ratio: 1 / 1;         /* mantiene cuadrada si el archivo es irregular */
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   border: 1px solid var(--border);
 }
@@ -125,11 +123,13 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--brand); outline-of
 /* Reveal on scroll */
 .reveal{opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease}
 .reveal.is-visible{opacity:1; transform:none}
+/* Si no hay JS, mostrar todo igual */
+.no-js .reveal{opacity:1; transform:none}
 
 /* Responsive */
 @media (max-width: 960px){
   .grid-2{grid-template-columns: 1fr}
-  .about-media{place-items:center}  /* centra la foto en pantallas chicas */
+  .about-media{place-items:center}
   .work-grid{grid-template-columns: repeat(2, 1fr)}
   .contact-grid{grid-template-columns: 1fr 1fr}
 }
@@ -144,6 +144,6 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--brand); outline-of
   .contact-grid{grid-template-columns: 1fr}
 }
 
-/* Data-elevate (ligero drop al hacer scroll) */
+/* Elevación al hacer scroll */
 [data-elevate]{transition: box-shadow .2s ease}
 [data-elevate].elevated{box-shadow: 0 8px 20px rgba(0,0,0,.18)}

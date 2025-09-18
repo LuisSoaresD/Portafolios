@@ -1,16 +1,24 @@
 <!doctype html>
-<html lang="es" class="no-js">
+<html lang="es" class="no-js" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portafolio — Luis Soares</title>
   <meta name="description" content="Portafolio de desarrollo front-end: HTML, CSS y JavaScript. Proyectos, información y contacto." />
-  <meta name="color-scheme" content="light dark" />
+  <meta name="color-scheme" content="dark light" />
 
-  <!-- CSS (rutas relativas para GitHub Pages) -->
-  <link rel="preload" href="./styles.css" as="style" />
-  <link rel="stylesheet" href="./styles.css" />
+  <!-- Aplica tema antes de cargar CSS para evitar parpadeos -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem('pref-theme');
+      document.documentElement.dataset.theme = saved || 'dark';
+      document.documentElement.classList.remove('no-js');
+    })();
+  </script>
 
+  <!-- CSS (cache-busting) -->
+  <link rel="preload" href="./styles.css?v=1.0.2" as="style" />
+  <link rel="stylesheet" href="./styles.css?v=1.0.2" />
   <link rel="icon" href="./favicon.ico" />
 </head>
 <body id="top">
@@ -19,7 +27,6 @@
   <header class="site-header" data-elevate>
     <div class="container header-inner">
       <a href="#top" class="brand" aria-label="Inicio">
-        <!-- Marca/Logo simple -->
         <svg class="brand-mark" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 2l7 4v12l-7 4-7-4V6l7-4z" />
         </svg>
@@ -44,7 +51,6 @@
   </header>
 
   <main id="main">
-    <!-- HERO -->
     <section class="hero section" aria-label="Presentación">
       <div class="container hero-inner">
         <div>
@@ -60,24 +66,17 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
     <section id="about" class="section reveal" aria-labelledby="about-title">
       <div class="container grid-2">
         <div class="about-media">
-          <!-- Reemplaza por tu foto -->
-          <img src="./img/fotoperfil.jpeg"
-               alt="Foto de perfil de Luis" width="640" height="550" loading="lazy" />
+          <img src="./img/fotoperfil.jpeg" alt="Foto de perfil de Luis" width="640" height="550" loading="lazy" />
         </div>
         <div class="about-copy">
           <h2 id="about-title">Sobre mí</h2>
-          <p>
-            Soy <strong>Luis Soares</strong>, estudiante y desarrollador <strong>Front-End</strong>. Me enfoco en construir
-            landing pages, portafolios y aplicaciones web con una base sólida en semántica, accesibilidad y performance.
-          </p>
-          <p>
-            Actualmente trabajo con <strong>HTML</strong>, <strong>CSS (Flex/Grid)</strong> y <strong>JavaScript</strong>, mejorando procesos,
-            componiendo UI reutilizable y cuidando los detalles visuales y de interacción.
-          </p>
+          <p>Soy <strong>Luis Soares</strong>, estudiante y desarrollador <strong>Front-End</strong>. Me enfoco en construir
+            landing pages, portafolios y aplicaciones web con una base sólida en semántica, accesibilidad y performance.</p>
+          <p>Actualmente trabajo con <strong>HTML</strong>, <strong>CSS (Flex/Grid)</strong> y <strong>JavaScript</strong>, mejorando procesos,
+            componiendo UI reutilizable y cuidando los detalles visuales y de interacción.</p>
           <ul class="pill-list" aria-label="Stack principal">
             <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Git/GitHub</li>
           </ul>
@@ -85,14 +84,12 @@
       </div>
     </section>
 
-    <!-- WORKS -->
     <section id="work" class="section reveal" aria-labelledby="work-title">
       <div class="container">
         <h2 id="work-title">Trabajos</h2>
         <p class="section-intro">Un vistazo a proyectos recientes. Haz clic para ver detalles o código.</p>
 
         <div class="work-grid" role="list">
-          <!-- Proyecto 1 -->
           <article class="work-card" role="listitem">
             <a class="work-link" href="https://github.com/usuario/proyecto-1" target="_blank" rel="noopener noreferrer">
               <figure class="work-thumb" aria-hidden="true">
@@ -105,7 +102,6 @@
             </a>
           </article>
 
-          <!-- Proyecto 2 -->
           <article class="work-card" role="listitem">
             <a class="work-link" href="https://github.com/usuario/proyecto-2" target="_blank" rel="noopener noreferrer">
               <figure class="work-thumb" aria-hidden="true">
@@ -118,7 +114,6 @@
             </a>
           </article>
 
-          <!-- Proyecto 3 -->
           <article class="work-card" role="listitem">
             <a class="work-link" href="https://github.com/usuario/proyecto-3" target="_blank" rel="noopener noreferrer">
               <figure class="work-thumb" aria-hidden="true">
@@ -134,14 +129,12 @@
       </div>
     </section>
 
-    <!-- CONTACTO -->
     <section id="contact" class="section reveal" aria-labelledby="contact-title">
       <div class="container">
         <h2 id="contact-title">Contacto</h2>
         <p class="section-intro">Escríbeme por el canal que prefieras. Respondo a la brevedad.</p>
 
         <div class="contact-grid">
-          <!-- Instagram -->
           <a class="contact-card" href="#" id="link-instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <span class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zM18 6.3a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/></svg>
@@ -152,7 +145,6 @@
             </div>
           </a>
 
-          <!-- WhatsApp -->
           <a class="contact-card" href="#" id="link-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
             <span class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M20 3.9A10 10 0 0 0 3.9 20L3 23l3-.9A10 10 0 1 0 20 3.9zM12 20a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm4.6-5.5c-.3-.2-1.7-.9-2-.9s-.5-.1-.7.2-.8.9-1 1-.4.2-.7.1a6.4 6.4 0 0 1-3-2.6c-.2-.4 0-.6.1-.8s.3-.4.4-.6a.8.8 0 0 0 .1-.6 6.1 6.1 0 0 0-.5-1c-.1-.3-.3-.5-.6-.6s-.5 0-.7 0a1.3 1.3 0 0 0-1 .5A2.2 2.2 0 0 0 6 10a3.7 3.7 0 0 0 .8 2.1 8.5 8.5 0 0 0 3.2 2.8 10.2 10.2 0 0 0 1.4.5c.6.2 1.2.1 1.6.1a2.8 2.8 0 0 0 1.8-.9 2.2 2.2 0 0 0 .5-1.4c0-.5 0-.7-.3-.8z"/></svg>
@@ -163,7 +155,6 @@
             </div>
           </a>
 
-          <!-- Email -->
           <a class="contact-card" href="#" id="link-email" aria-label="Email">
             <span class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.5l8 5 8-5V6H4zm16 12V9.3l-8 5-8-5V18h16z"/></svg>
@@ -185,10 +176,10 @@
     </div>
   </footer>
 
-  <!-- Tu JS (ruta relativa) -->
-  <script src="./script.js" defer></script>
+  <!-- JS (cache-busting) -->
+  <script src="./script.js?v=1.0.2" defer></script>
 
-  <!-- Plausible con dominio de Pages -->
+  <!-- Plausible -->
   <script defer data-domain="luissoaresd.github.io/Portafolios" src="https://plausible.io/js/script.js"></script>
 </body>
 </html>
