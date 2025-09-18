@@ -1,0 +1,137 @@
+:root{
+  --bg: #0b0c10;
+  --panel: #111218;
+  --text: #e8e8ea;
+  --muted: #a7a7b3;
+  --brand: #7c5cff;
+  --brand-2: #00e0a4;
+  --border: #1c1d26;
+  --shadow: 0 10px 30px rgba(0,0,0,.25);
+  --radius: 16px;
+}
+
+/* Light mode base (se ajusta con prefers-color-scheme) */
+@media (prefers-color-scheme: light) {
+  :root{
+    --bg: #f7f7fb;
+    --panel: #ffffff;
+    --text: #18181b;
+    --muted: #4b5563;
+    --brand: #5b3df1;
+    --brand-2: #00b386;
+    --border: #eaeaf1;
+    --shadow: 0 8px 24px rgba(0,0,0,.08);
+  }
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font: 500 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  background: radial-gradient(1200px 600px at 10% -10%, rgba(124,92,255,.18), transparent 40%),
+              radial-gradient(1000px 500px at 100% 10%, rgba(0,224,164,.14), transparent 45%),
+              var(--bg);
+  scroll-behavior: smooth;
+}
+
+img{max-width:100%;display:block;border-radius: calc(var(--radius) - 4px)}
+a{color:inherit;text-decoration:none}
+a:focus-visible, button:focus-visible{outline:2px solid var(--brand); outline-offset: 3px; border-radius: 8px}
+
+.container{width:min(1120px, 92%); margin-inline:auto}
+
+.skip-link{
+  position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+}
+.skip-link:focus{left:1rem; top:1rem; width:auto; height:auto; background:var(--panel); padding:.5rem .75rem; border-radius:8px; box-shadow:var(--shadow);}
+
+/* Header */
+.site-header{
+  position: sticky; top:0; z-index: 50; background: color-mix(in oklab, var(--bg) 85%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner{display:flex; align-items:center; justify-content:space-between; padding:.75rem 0;}
+.brand{display:flex; align-items:center; gap:.6rem; font-weight:800; letter-spacing:.2px}
+.brand-mark{fill: var(--brand)}
+.brand-text{font-size:1.05rem}
+
+.site-nav ul{display:flex; align-items:center; gap:.75rem; margin:0; padding:0; list-style:none}
+.site-nav a{padding:.55rem .75rem; border-radius:10px; transition: background .2s, color .2s}
+.site-nav a:hover{background: color-mix(in oklab, var(--brand) 16%, transparent); color: #fff}
+.theme-toggle{padding:.55rem .75rem; border-radius:10px; border:1px solid var(--border); background:var(--panel); cursor:pointer}
+.theme-toggle:hover{border-color: color-mix(in oklab, var(--brand) 55%, var(--border))}
+
+.nav-toggle{display:none; background:none; border:none; cursor:pointer}
+.nav-toggle-bar{display:block; width:24px; height:2px; background:var(--text); margin:5px 0; border-radius:1px}
+
+/* Hero */
+.hero{padding: 4.5rem 0 2.5rem}
+.hero-inner{display:grid; align-items:center; gap:2rem; grid-template-columns: 1fr}
+.hero h1{font-size: clamp(2rem, 3.5vw, 3rem); line-height:1.15; margin:.25rem 0 .5rem}
+.lead{color:var(--muted); font-size: clamp(1rem, 1.8vw, 1.25rem)}
+.cta-row{display:flex; gap:.75rem; margin-top:1rem}
+.btn{display:inline-block; padding:.8rem 1.05rem; background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#fff; border-radius:12px; box-shadow: var(--shadow); font-weight:700}
+.btn--ghost{background: transparent; color: var(--text); border:1px solid var(--border); box-shadow:none}
+
+/* Sections */
+.section{padding: 3.5rem 0}
+.section-intro{color:var(--muted); margin-top:-.5rem}
+.grid-2{display:grid; grid-template-columns: 1fr 1fr; gap:2rem}
+.about-media img{aspect-ratio:1/1; object-fit:cover}
+.pill-list{display:flex; flex-wrap:wrap; gap:.5rem; padding:0; list-style:none; margin:1rem 0 0}
+.pill-list li{padding:.4rem .65rem; border:1px dashed var(--border); border-radius:999px; font-size:.9rem; color:var(--muted)}
+
+/* Work */
+.work-grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:1.25rem; margin-top:1.25rem}
+.work-card{background:var(--panel); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow:hidden; transition: transform .18s ease, box-shadow .18s ease}
+.work-card:hover{transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.25)}
+.work-thumb img{width:100%; height:220px; object-fit:cover}
+.work-content{padding:1rem}
+.work-title{margin:.25rem 0 .35rem; font-size:1.1rem}
+.work-desc{color:var(--muted); font-size:.95rem}
+
+/* Contact */
+.contact-grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; margin-top:1rem}
+.contact-card{
+  display:flex; align-items:center; gap:.9rem; padding:1rem;
+  background: var(--panel); border:1px solid var(--border); border-radius: var(--radius);
+  box-shadow: var(--shadow); transition: transform .18s, box-shadow .18s, border-color .18s;
+}
+.contact-card:hover{transform: translateY(-3px); box-shadow: 0 14px 36px rgba(0,0,0,.22); border-color: color-mix(in oklab, var(--brand) 60%, var(--border))}
+.icon{display:grid; place-items:center; width:42px; height:42px; border-radius:10px; background: color-mix(in oklab, var(--brand) 22%, var(--panel)); flex: none}
+.icon svg{width:22px; height:22px; fill:#fff}
+.contact-text span{color:var(--muted); font-size:.95rem}
+
+/* Footer */
+.site-footer{padding:2rem 0; border-top:1px solid var(--border)}
+.footer-inner{display:flex; align-items:center; justify-content:space-between}
+.to-top{opacity:.8}
+.to-top:hover{opacity:1}
+
+/* Reveal on scroll */
+.reveal{opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease}
+.reveal.is-visible{opacity:1; transform:none}
+
+/* Responsive */
+@media (max-width: 960px){
+  .grid-2{grid-template-columns: 1fr}
+  .work-grid{grid-template-columns: repeat(2, 1fr)}
+  .contact-grid{grid-template-columns: 1fr 1fr}
+}
+@media (max-width: 720px){
+  .site-nav{position: absolute; inset: 64px 0 auto; background: var(--panel); border-bottom:1px solid var(--border); display:none}
+  .site-nav.open{display:block}
+  .site-nav ul{flex-direction:column; align-items:flex-start; gap:0}
+  .site-nav a, .theme-toggle{width:100%; text-align:left; border-radius:0; border:none}
+  .nav-toggle{display:block}
+  .hero{padding: 3.25rem 0 1.5rem}
+  .work-grid{grid-template-columns: 1fr}
+  .contact-grid{grid-template-columns: 1fr}
+}
+
+/* Data-elevate (ligero drop al hacer scroll) */
+[data-elevate]{transition: box-shadow .2s ease}
+[data-elevate].elevated{box-shadow: 0 8px 20px rgba(0,0,0,.18)}
